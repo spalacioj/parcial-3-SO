@@ -1,7 +1,7 @@
 
-# Compresor LZ78 en C++
+# Compresion y encriptacion de archivos
 
-Este proyecto implementa el algoritmo de compresión LZ78 en C++ para comprimir y descomprimir archivos tanto de texto plano como binarios. Utiliza una estructura de diccionario para almacenar y reutilizar subcadenas, lo que reduce la redundancia y el tamaño del archivo.
+Este proyecto implementa el algoritmo de compresión LZ78 y el algoritmo de encriptacion chacha20 en C++ para para comprimir y encriptar archivos y asi demostrar si es mas rapido comprimir y encriptar un archivo o viceversa.
 
 ## Descripción del Algoritmo LZ78
 
@@ -11,20 +11,27 @@ El algoritmo LZ78 es un método de compresión sin pérdida que trabaja con un d
 
 Al final, el diccionario contiene todas las combinaciones posibles de subcadenas encontradas en el archivo. La compresión se logra al referenciar cada subcadena mediante su índice en lugar de almacenarla completamente.
 
+## Descripcion de la encriptacion chacha20
+
+Chacha20 se basa en la idea de generar una secuencia de números pseudoaleatorios llamada “flujo de cifrado” y luego combinarla con los datos que se desean cifrar mediante una operación XOR, para ello utiliza bloques de 512 bits, donde cada bloque consta de 16 palabras de 32 bits. Estos bloques se utilizan como base para generar el flujo de cifrado. El proceso implica aplicar 20 rondas de operaciones al bloque para mezclar y ocultar su contenido.
+
 ## Estructura del Proyecto
 
 - **LZ78Compressor.h**: Archivo de cabecera que define la clase `LZ78Compressor` con métodos de compresión y descompresión.
 - **LZ78Compressor.cpp**: Implementación de los métodos de compresión y descompresión, junto con la función para mostrar la tabla de códigos.
-- **main.cpp**: Programa principal que maneja los argumentos de la línea de comandos para comprimir o descomprimir archivos.
+- **main.cpp**: Programa principal que maneja los argumentos de la línea de comandos para preguntar que archivo usar y si comprimir o encriptar primero o viceversa y de la misma manera hacer lo inverso y por ultimo calcualr tiempo de ejecucion
 - **Makefile**: Archivo para compilar el proyecto en Linux.
+- **chacha20Encryptor.h**: Archivo de cabecera que define la clase `Chacha20Encryptor` con sus respectivos metodos y atributos
+- **chacha20Encryptor.h**: Implementacion de los metodos de encriptar y desencriptar definidos en la clase cabecera
+- **.gitignore**: aqui para evitar subir archivos de prueba al repo
+
 
 ## Uso del Programa
 
-Para comprimir o descomprimir un archivo, el programa acepta los siguientes argumentos en la línea de comandos:
+Para usar el programa, el programa acepta los siguientes argumentos en la línea de comandos:
 
 ```bash
-./lz78_program -c <archivo_entrada> <archivo_salida>  # Comprimir un archivo
-./lz78_program -d <archivo_comprimido> <archivo_salida>  # Descomprimir un archivo
+./parcial3 # el programa pregunta las opciones a usar
 ```
 
 ## Pseudocódigos de las Funciones
@@ -131,8 +138,10 @@ Ejecuta el programa usando los comandos indicados en la sección "Uso del Progra
 ## Notas Importantes
 
 - El archivo comprimido generado incluye los índices y símbolos en binario, por lo que no es directamente legible sin descompresión.
-- La implementación muestra la tabla de códigos de palabras al finalizar el proceso de compresión para que el usuario pueda observar el estado del diccionario.
+- El archivo encriptado tampoco puede ser legible hasta que sea desencriptado
+- El codigo genera archivos temporales para la encriptacion y compresion que quedan guardados en la estructura del proyecto
 
 ## Referencias
 
 - [Wikipedia - LZ78](https://en.wikipedia.org/wiki/LZ78): Explicación detallada del algoritmo LZ78 y su implementación.
+- [Medium - Algoritmo de cifrado chacha20](https://medium.com/@parejaemi/algoritmo-de-cifrado-chacha20-119a6d7c19a7): Explicacion de funcionamiento algoritmo chacha20
