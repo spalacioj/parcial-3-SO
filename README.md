@@ -131,6 +131,7 @@ Para compilar el programa en Linux, usa el archivo `Makefile` proporcionado:
 ```bash
 make  # Compila el proyecto
 make clean  # Limpia los archivos compilados
+make clean_files # Limpia los archivos temporales de compresion .enc y .lz78
 ```
 
 Ejecuta el programa usando los comandos indicados en la sección "Uso del Programa".

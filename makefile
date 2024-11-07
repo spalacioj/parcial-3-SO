@@ -20,3 +20,6 @@ chacha20Encryptor.o: chacha20Encryptor.cpp chacha20Encryptor.h
 
 clean:
 	rm -f $(TARGET) $(OBJ)
+
+clean_files:
+	rm -f *.enc *.lz78
